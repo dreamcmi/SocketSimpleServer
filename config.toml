@@ -1,0 +1,9 @@
+[tcp]
+ip = "0.0.0.0"
+port = 23333
+maxSize = 1000
+
+[udp]
+ip = "0.0.0.0"
+port = 23334
+maxSize = 1400
