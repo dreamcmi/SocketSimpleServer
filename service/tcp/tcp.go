@@ -48,6 +48,13 @@ func tcpProcess(conn net.Conn) {
 		}
 		dataString := string(buf[:n])
 		dataHex := hex.EncodeToString(buf[:n])
+		if config.Config.Tcp.SimpleAck {
+			simpleAckBuf := "len:" + strconv.Itoa(len(dataString))
+			_, err = conn.Write([]byte(simpleAckBuf))
+			if err != nil {
+				log.Log.Error().Msgf("TCP(%s) Write Error: %v", conn.RemoteAddr().String(), err)
+			}
+		}
 		log.Log.Info().Msgf("TCP(%s) Receive(%d):%s", conn.RemoteAddr().String(), len(dataString), dataString)
 		log.Log.Info().Msgf("TCP(%s) Receive Hex:%s", conn.RemoteAddr().String(), dataHex)
 	}

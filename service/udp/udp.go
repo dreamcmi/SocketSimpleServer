@@ -5,6 +5,7 @@ import (
 	"SocketSimpleServer/internal/log"
 	"encoding/hex"
 	"net"
+	"strconv"
 )
 
 func Run() {
@@ -30,6 +31,13 @@ func Run() {
 		}
 		dataString := string(data[:count])
 		dataHex := hex.EncodeToString(data[:count])
+		if config.Config.Udp.SimpleAck {
+			simpleAckBuf := "len:" + strconv.Itoa(len(dataString))
+			_, err = listen.WriteToUDP([]byte(simpleAckBuf), addr)
+			if err != nil {
+				log.Log.Error().Msgf("UDP(%s) Write Error: %v", addr, err)
+			}
+		}
 		log.Log.Info().Msgf("UDP(%s) Receive(%d):%s", addr, len(dataString), dataString)
 		log.Log.Info().Msgf("UDP(%s) Receive Hex:%s", addr, dataHex)
 	}
