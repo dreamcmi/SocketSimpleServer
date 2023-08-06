@@ -9,11 +9,11 @@ import (
 var Config config
 
 type config struct {
-	Tcp tcp
-	Udp udp
+	Tcp socketConf
+	Udp socketConf
 }
 
-type tcp struct {
+type socketConf struct {
 	Ip        string
 	Port      int
 	MaxSize   int
@@ -21,13 +21,21 @@ type tcp struct {
 	WholeAck  bool
 }
 
-type udp struct {
-	Ip        string
-	Port      int
-	MaxSize   int
-	SimpleAck bool
-	WholeAck  bool
-}
+//type tcp struct {
+//	Ip        string
+//	Port      int
+//	MaxSize   int
+//	SimpleAck bool
+//	WholeAck  bool
+//}
+//
+//type udp struct {
+//	Ip        string
+//	Port      int
+//	MaxSize   int
+//	SimpleAck bool
+//	WholeAck  bool
+//}
 
 func Parse() {
 	var (
