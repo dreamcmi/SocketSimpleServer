@@ -2,8 +2,12 @@
 ip = "0.0.0.0"
 port = 23333
 maxSize = 1000
+simpleAck = true    # 简单回复: 回复收到的长度
+wholeAck = false    # todo: 完整回显
 
 [udp]
 ip = "0.0.0.0"
 port = 23334
 maxSize = 1400
+simpleAck = true    # 简单回复: 回复收到的长度
+wholeAck = false    # todo: 完整回显

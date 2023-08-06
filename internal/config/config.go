@@ -14,15 +14,19 @@ type config struct {
 }
 
 type tcp struct {
-	Ip      string
-	Port    int
-	MaxSize int
+	Ip        string
+	Port      int
+	MaxSize   int
+	SimpleAck bool
+	WholeAck  bool
 }
 
 type udp struct {
-	Ip      string
-	Port    int
-	MaxSize int
+	Ip        string
+	Port      int
+	MaxSize   int
+	SimpleAck bool
+	WholeAck  bool
 }
 
 func Parse() {
