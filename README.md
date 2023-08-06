@@ -23,11 +23,15 @@ go build main.go -o SocketSimpleServer
 ip = "0.0.0.0" # ip
 port = 23333   # 端口号
 maxSize = 1000 # 接收最大包长
+simpleAck = true    # 简单回复: 回复收到的长度
+wholeAck = false    # 完整回复: 整包回传
 
 [udp]
 ip = "0.0.0.0" # ip
 port = 23334   # 端口号
 maxSize = 1400 # 接收最大包长
+simpleAck = true    # 简单回复: 回复收到的长度
+wholeAck = false    # 完整回复: 整包回传
 
 ```
 
