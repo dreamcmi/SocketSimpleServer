@@ -35,7 +35,13 @@ func Run() {
 			simpleAckBuf := "len:" + strconv.Itoa(len(dataString))
 			_, err = listen.WriteToUDP([]byte(simpleAckBuf), addr)
 			if err != nil {
-				log.Log.Error().Msgf("UDP(%s) Write Error: %v", addr, err)
+				log.Log.Error().Msgf("UDP(%s) simple ack Write Error: %v", addr, err)
+			}
+		}
+		if config.Config.Udp.WholeAck {
+			_, err = listen.WriteToUDP(data, addr)
+			if err != nil {
+				log.Log.Error().Msgf("UDP(%s) whole ack Write Error: %v", addr, err)
 			}
 		}
 		log.Log.Info().Msgf("UDP(%s) Receive(%d):%s", addr, len(dataString), dataString)

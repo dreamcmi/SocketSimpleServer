@@ -52,7 +52,13 @@ func tcpProcess(conn net.Conn) {
 			simpleAckBuf := "len:" + strconv.Itoa(len(dataString))
 			_, err = conn.Write([]byte(simpleAckBuf))
 			if err != nil {
-				log.Log.Error().Msgf("TCP(%s) Write Error: %v", conn.RemoteAddr().String(), err)
+				log.Log.Error().Msgf("TCP(%s) simple ack Write Error: %v", conn.RemoteAddr().String(), err)
+			}
+		}
+		if config.Config.Tcp.WholeAck {
+			_, err = conn.Write(buf)
+			if err != nil {
+				log.Log.Error().Msgf("TCP(%s) whole ack Write Error: %v", conn.RemoteAddr().String(), err)
 			}
 		}
 		log.Log.Info().Msgf("TCP(%s) Receive(%d):%s", conn.RemoteAddr().String(), len(dataString), dataString)
